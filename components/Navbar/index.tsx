@@ -1,10 +1,10 @@
 import Image from "next/image";
 import React from "react";
-import { Container, Title } from "./styles";
+import { NavbarWrapper, Title } from "./styles";
 
 const Navbar: React.FC = () => {
   return (
-    <Container>
+    <NavbarWrapper>
       <Image
         width={100}
         height={140}
@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
         alt="weather-icon"
       />
       <Title>I-Weather</Title>
-    </Container>
+    </NavbarWrapper>
   );
 };
 
