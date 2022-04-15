@@ -1,10 +1,8 @@
 import axios, { AxiosError } from "axios";
+import { Coordinates } from "../common/interfaces";
 
 interface GetCoordinatesResponse {
-  coordinates?: {
-    longitude?: number;
-    latitude?: number;
-  };
+  coordinates?: Coordinates;
   description?: string;
   error?: Error;
 }

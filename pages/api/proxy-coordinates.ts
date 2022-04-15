@@ -1,15 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axios, { AxiosResponse } from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { Coordinates } from "../../common/interfaces";
 
 const GEO_URL =
   "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=2020&format=json";
 
 interface Response {
-  coordinates?: {
-    longitude?: number;
-    latitude?: number;
-  };
+  coordinates?: Coordinates;
   description?: string;
   error?: Error;
 }
@@ -28,9 +26,9 @@ export default async function handler(
     const response: AxiosResponse = await axios.get(url);
     if (!response.data.result.addressMatches.length)
       return res.status(200).json({ description: "Address not found" });
-    const coordinates = response.data.result?.addressMatches[0]?.coordinates;
+    const { x, y } = response.data.result?.addressMatches[0]?.coordinates;
 
-    res.status(200).json({ coordinates });
+    res.status(200).json({ coordinates: { longitude: x, latitude: y } });
   } catch (error) {
     res.status(500).json({ error: error as Error });
   }
