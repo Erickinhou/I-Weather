@@ -6,8 +6,8 @@ const Navbar: React.FC = () => {
   return (
     <NavbarWrapper>
       <Image
-        width={100}
-        height={140}
+        width={80}
+        height={100}
         src="/images/weather-icon.png"
         alt="weather-icon"
       />
