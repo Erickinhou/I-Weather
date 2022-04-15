@@ -1,14 +1,22 @@
 import React, { useState } from "react";
-import { getCoordinates } from "../../services/getCoordinates";
+import getCoordinates from "../../services/getCoordinates";
 import { SearchWrapper, Label, Input, Button } from "./styles";
+import { Coordinates } from "../../common/interfaces";
 
-const SearchBar: React.FC = () => {
+interface Props {
+  setCoordinates: React.Dispatch<React.SetStateAction<Coordinates | undefined>>;
+}
+
+const SearchBar: React.FC<Props> = ({ setCoordinates }) => {
   const [address, setAddress] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    getCoordinates(address);
+    setIsLoading(true);
+    const { coordinates } = await getCoordinates(address);
+    setIsLoading(false);
+    setCoordinates(coordinates);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
