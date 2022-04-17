@@ -10,7 +10,6 @@ interface GetCoordinatesResponse {
 const getCoordinates = async (
   address: string
 ): Promise<GetCoordinatesResponse> => {
-  console.log("Json", JSON.stringify({ address }));
   const url = `/api/proxy-coordinates?address=${address}`;
   try {
     const response = await axios.get(url);
