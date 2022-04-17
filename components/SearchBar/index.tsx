@@ -8,15 +8,19 @@ interface Props {
 }
 
 const SearchBar: React.FC<Props> = ({ setCoordinates }) => {
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState(
+    "4600 Silver Hill Rd, Washington, DC 20233"
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
     const { coordinates } = await getCoordinates(address);
-    setIsLoading(false);
     setCoordinates(coordinates);
+
+    setIsLoading(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
