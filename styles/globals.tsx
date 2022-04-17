@@ -1,4 +1,16 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+interface FlexProps {
+  items?: React.CSSProperties["alignItems"];
+  justify?: React.CSSProperties["justifyContent"];
+  direction?: React.CSSProperties["flexDirection"];
+}
+export const Flex = styled.div<FlexProps>`
+  display: flex;
+  width: 100%;
+  align-content: ${(p) => p.items ?? "flex-start"};
+  justify-content: ${(p) => p.justify ?? "flex-start"};
+  flex-direction: ${(p) => p.direction ?? "row"};
+`;
 
 export default createGlobalStyle`
   body {

@@ -1,9 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
+import { Coordinates } from "../common/interfaces";
+import Forecast from "../components/Forecast";
 
 const Home: NextPage = () => {
+  const [coordinates, setCoordinates] = useState<Coordinates>();
   return (
     <div>
       <Head>
@@ -12,7 +16,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <SearchBar />
+      <SearchBar setCoordinates={setCoordinates} />
+      {coordinates && <Forecast coordinates={coordinates} />}
     </div>
   );
 };
