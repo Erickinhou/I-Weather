@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import getCoordinates from "../../services/getCoordinates";
 import { SearchWrapper, Label, Input, Button } from "./styles";
 import { Coordinates } from "../../common/interfaces";
+import { toast } from "react-toastify";
 
 interface Props {
   setCoordinates: React.Dispatch<React.SetStateAction<Coordinates | undefined>>;
@@ -17,8 +18,14 @@ const SearchBar: React.FC<Props> = ({ setCoordinates }) => {
     e.preventDefault();
     setIsLoading(true);
 
-    const { coordinates } = await getCoordinates(address);
+    const { coordinates, description, error } = await getCoordinates(address);
     setCoordinates(coordinates);
+    if (error) {
+      toast.error("Oops, something went wrong");
+      console.error(error);
+    } else {
+      toast.success(description ?? "Address found");
+    }
 
     setIsLoading(false);
   };

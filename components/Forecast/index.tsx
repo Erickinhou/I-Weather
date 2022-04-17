@@ -3,6 +3,7 @@ import { Coordinates, Forecast } from "../../common/interfaces";
 import { ForecastWrapper } from "./styles";
 import getForecast from "../../services/getForecast";
 import ForecastCard from "./ForcastCard";
+import { toast, ToastContainer } from "react-toastify";
 
 interface Props {
   coordinates: Coordinates;
@@ -15,7 +16,8 @@ const Forecast: React.FC<Props> = ({ coordinates }) => {
     try {
       setForecasters(await getForecast(coordinates));
     } catch (error) {
-      console.log(error);
+      toast.error("Forecast not find");
+      console.error(error);
     }
   }, [coordinates]);
 
@@ -27,6 +29,7 @@ const Forecast: React.FC<Props> = ({ coordinates }) => {
 
   return (
     <ForecastWrapper>
+      <ToastContainer />
       {forecasters.map((forecast) => (
         <ForecastCard key={forecast.number} forecast={forecast} />
       ))}
