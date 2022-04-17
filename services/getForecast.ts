@@ -3,9 +3,7 @@ import { Coordinates, Forecast } from "../common/interfaces";
 
 const NWS_API = "https://api.weather.gov/points/";
 
-const getForecast = async (
-  coordinates: Coordinates
-): Promise<Forecast[] | Error> => {
+const getForecast = async (coordinates: Coordinates): Promise<Forecast[]> => {
   try {
     const { latitude, longitude } = coordinates;
     const {
@@ -20,8 +18,7 @@ const getForecast = async (
     } = await axios.get(forecast);
     return periods as Forecast[];
   } catch (err) {
-    const error = err as Error;
-    return error;
+    throw err;
   }
 };
 
