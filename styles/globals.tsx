@@ -17,6 +17,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #f8fafc;
   }
   h1, h2, h3, h4, h5, h6, p, blockquote{
     padding: 0;
