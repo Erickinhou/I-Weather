@@ -45,7 +45,12 @@ const SearchBar: React.FC<Props> = ({ setCoordinates }) => {
       >
         <Label>Put the address and see the forecast</Label>
 
-        <Input type="text" onChange={handleChange} value={address} />
+        <Input
+          type="text"
+          onChange={handleChange}
+          value={address}
+          placeholder="Insert address..."
+        />
         <Button type="submit" disabled={isLoading}>
           Search
         </Button>
