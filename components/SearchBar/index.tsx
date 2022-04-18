@@ -24,8 +24,6 @@ const SearchBar: React.FC<Props> = ({ setCoordinates }) => {
     setCoordinates(coordinates);
     if (error || description) {
       toast.error(description ?? "Oops, something went wrong");
-    } else {
-      toast.success("Address Found");
     }
     setAddress("");
     setIsLoading(false);

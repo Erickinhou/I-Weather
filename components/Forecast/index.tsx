@@ -16,6 +16,7 @@ const Forecast: React.FC<Props> = ({ coordinates }) => {
   const loadForecast = useCallback(async () => {
     try {
       setForecasters(await getForecast(coordinates));
+      toast.success("Forecast found");
     } catch (error) {
       toast.error("Forecast not find");
       console.error(error);
