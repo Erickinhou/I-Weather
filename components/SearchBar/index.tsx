@@ -22,11 +22,10 @@ const SearchBar: React.FC<Props> = ({ setCoordinates }) => {
     setCoordinates(undefined);
     const { coordinates, description, error } = await getCoordinates(address);
     setCoordinates(coordinates);
-    if (error) {
-      toast.error("Oops, something went wrong");
-      console.error(error);
+    if (error || description) {
+      toast.error(description ?? "Oops, something went wrong");
     } else {
-      toast.success(description ?? "Address found");
+      toast.success("Address Found");
     }
     setAddress("");
     setIsLoading(false);
