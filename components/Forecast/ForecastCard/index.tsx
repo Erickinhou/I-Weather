@@ -26,7 +26,7 @@ const ForecastCard: React.FC<Props> = ({
   },
 }) => {
   return (
-    <ForecastWrapper>
+    <ForecastWrapper data-testid={`forecast-test-id`}>
       <Flex>
         <ImageWrapper>
           <Image

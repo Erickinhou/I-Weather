@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Coordinates, Forecast } from "../../common/interfaces";
 import { ForecastWrapper } from "./styles";
 import getForecast from "../../services/getForecast";
-import ForecastCard from "./ForcastCard";
+import ForecastCard from "./ForecastCard";
 import { toast, ToastContainer } from "react-toastify";
 import { popup } from "../../animations";
 
