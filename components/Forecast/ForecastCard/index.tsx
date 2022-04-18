@@ -38,7 +38,9 @@ const ForecastCard: React.FC<Props> = ({
         <Flex direction="column">
           <Title>{name}</Title>
           <Subtitle>
-            {temperature}°F🌡️ {windSpeed} 💨
+            {temperature}°F / {fahrenheitToCelsius(temperature)}°C🌡️
+            <br />
+            {windSpeed} 💨
           </Subtitle>
           <Time>{convertTime(startTime)}</Time>
         </Flex>
@@ -71,6 +73,11 @@ const convertTime = (date: string | undefined) => {
   };
   if (!date) return;
   return new Date(date).toLocaleString("en-US", options);
+};
+
+const fahrenheitToCelsius = (f: number | undefined) => {
+  if (!f) return 0;
+  return Math.round(((f - 32) * 5) / 9);
 };
 
 export default ForecastCard;
