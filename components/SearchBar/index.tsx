@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import getCoordinates from "../../services/getCoordinates";
-import { SearchWrapper, Label, Input, Button } from "./styles";
+import { SearchWrapper, Label, Input, Button, Error } from "./styles";
 import { Coordinates } from "../../common/interfaces";
 import { toast } from "react-toastify";
 import { fadeIn } from "../../animations";
@@ -14,6 +14,7 @@ const SearchBar: React.FC<Props> = ({ setCoordinates }) => {
     "4600 Silver Hill Rd, Washington, DC 20233"
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [errorText, setErrorText] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,9 +24,12 @@ const SearchBar: React.FC<Props> = ({ setCoordinates }) => {
     const { coordinates, description, error } = await getCoordinates(address);
     setCoordinates(coordinates);
     if (error || description) {
+      setErrorText(description ?? "Oops, something went wrong");
       toast.error(description ?? "Oops, something went wrong");
+    } else {
+      setAddress("");
+      setErrorText("");
     }
-    setAddress("");
     setIsLoading(false);
   };
 
@@ -41,17 +45,19 @@ const SearchBar: React.FC<Props> = ({ setCoordinates }) => {
         initial="hidden"
         animate="show"
       >
-        <Label>Put the address and see the forecast</Label>
+        <Label>Put the address and see the forecast *</Label>
 
         <Input
           type="text"
           onChange={handleChange}
           value={address}
+          required
           placeholder="Insert address..."
         />
         <Button type="submit" disabled={isLoading}>
           Search
         </Button>
+        <Error>{errorText}</Error>
       </SearchWrapper>
     </>
   );

@@ -45,3 +45,10 @@ export const Button = styled.button`
     background-color: #0c4a6e99;
   }
 `;
+
+export const Error = styled.p`
+  color: #dc2626;
+  font-size: 12px;
+  margin: 10px 5px;
+  font-weight: 600;
+`;
