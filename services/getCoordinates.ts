@@ -10,6 +10,7 @@ interface GetCoordinatesResponse {
 const getCoordinates = async (
   address: string
 ): Promise<GetCoordinatesResponse> => {
+  // Call proxy to avoid cors
   const url = `/api/proxy-coordinates?address=${address}`;
   try {
     const response = await axios.get(url);
