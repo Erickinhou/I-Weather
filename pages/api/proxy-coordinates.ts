@@ -18,7 +18,6 @@ export default async function handler(
 ) {
   try {
     const address = req.query.address as string;
-    console.log(address);
 
     if (!address)
       return res.status(400).json({ description: "Address is required" });
