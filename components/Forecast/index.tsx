@@ -4,6 +4,7 @@ import { ForecastWrapper } from "./styles";
 import getForecast from "../../services/getForecast";
 import ForecastCard from "./ForcastCard";
 import { toast, ToastContainer } from "react-toastify";
+import { popup } from "../../animations";
 
 interface Props {
   coordinates: Coordinates;
@@ -28,7 +29,12 @@ const Forecast: React.FC<Props> = ({ coordinates }) => {
   if (!forecasters) return <></>;
 
   return (
-    <ForecastWrapper>
+    <ForecastWrapper
+      variants={popup}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+    >
       <ToastContainer />
       {forecasters.map((forecast) => (
         <ForecastCard key={forecast.number} forecast={forecast} />

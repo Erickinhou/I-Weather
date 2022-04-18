@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import { Coordinates } from "../common/interfaces";
 import Forecast from "../components/Forecast";
+import { AnimatePresence } from "framer-motion";
 
 const Home: NextPage = () => {
   const [coordinates, setCoordinates] = useState<Coordinates>();
@@ -19,7 +20,9 @@ const Home: NextPage = () => {
       <ToastContainer />
       <Navbar />
       <SearchBar setCoordinates={setCoordinates} />
-      {coordinates && <Forecast coordinates={coordinates} />}
+      <AnimatePresence exitBeforeEnter>
+        {coordinates && <Forecast coordinates={coordinates} />}
+      </AnimatePresence>
     </div>
   );
 };

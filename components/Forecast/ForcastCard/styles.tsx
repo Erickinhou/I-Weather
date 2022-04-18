@@ -1,11 +1,13 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const ForecastWrapper = styled.div`
+export const ForecastWrapper = styled(motion.div)`
   min-width: 200px;
   padding: 20px;
   border: solid 1px #ddd;
   border-radius: 8px;
   box-shadow: 2px 2px 2px #ddd;
+  background-color: #fff;
 `;
 
 export const Title = styled.h2`
