@@ -8,14 +8,17 @@ import { popup } from "../../animations";
 
 interface Props {
   coordinates: Coordinates;
+  days: number;
+  setDays: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Forecast: React.FC<Props> = ({ coordinates }) => {
+const Forecast: React.FC<Props> = ({ coordinates, days }) => {
   const [forecasters, setForecasters] = useState<Forecast[]>();
 
   const loadForecast = useCallback(async () => {
     try {
-      setForecasters(await getForecast(coordinates));
+      const result = await getForecast(coordinates);
+      setForecasters(result.filter((_, index) => index < days * 2));
       toast.success("Forecast found");
     } catch (error) {
       toast.error("Forecast not find");

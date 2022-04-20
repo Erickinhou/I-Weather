@@ -10,6 +10,7 @@ import { AnimatePresence } from "framer-motion";
 
 const Home: NextPage = () => {
   const [coordinates, setCoordinates] = useState<Coordinates>();
+  const [days, setDays] = useState(7);
   return (
     <div>
       <Head>
@@ -17,9 +18,15 @@ const Home: NextPage = () => {
       </Head>
       <ToastContainer />
       <Navbar />
-      <SearchBar setCoordinates={setCoordinates} />
+      <SearchBar
+        days={days}
+        setDays={setDays}
+        setCoordinates={setCoordinates}
+      />
       <AnimatePresence exitBeforeEnter>
-        {coordinates && <Forecast coordinates={coordinates} />}
+        {coordinates && (
+          <Forecast days={days} setDays={setDays} coordinates={coordinates} />
+        )}
       </AnimatePresence>
     </div>
   );

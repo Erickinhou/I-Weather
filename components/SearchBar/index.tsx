@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import InputDays from "../InputDays";
 import getCoordinates from "../../services/getCoordinates";
 import { SearchWrapper, Label, Input, Button, Error } from "./styles";
 import { Coordinates } from "../../common/interfaces";
@@ -7,9 +8,11 @@ import { fadeIn } from "../../animations";
 
 interface Props {
   setCoordinates: React.Dispatch<React.SetStateAction<Coordinates | undefined>>;
+  days: number;
+  setDays: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const SearchBar: React.FC<Props> = ({ setCoordinates }) => {
+const SearchBar: React.FC<Props> = ({ setCoordinates, days, setDays }) => {
   const [address, setAddress] = useState(
     "4600 Silver Hill Rd, Washington, DC 20233"
   );
@@ -57,6 +60,7 @@ const SearchBar: React.FC<Props> = ({ setCoordinates }) => {
         <Button type="submit" disabled={isLoading}>
           Search
         </Button>
+        <InputDays days={days} setDays={setDays} />
         <Error>{errorText}</Error>
       </SearchWrapper>
     </>
